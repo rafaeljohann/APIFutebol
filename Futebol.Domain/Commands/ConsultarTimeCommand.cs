@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Futebol.Domain.Commands.Contracts;
+using MediatR;
 
 namespace Futebol.Domain.Commands
 {
-    public class ConsultarTimeCommand : ICommand
+    public class ConsultarTimeCommand : IRequest<ConsultarTimeResponse>
     {
-        public ConsultarTimeCommand() { }
-
-        public long Id { get; set; }
+        public long Id { get; init; }
+        public ConsultarTimeCommand(long id) {
+            Id = id;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Futebol.Domain.Entities
             Estado = estado;
             Pais = pais;
         }
-
+        
         public string Nome { get; private set; }
         public DateTime DataFundacao { get; private set; }
         public string NomePresidente { get; private set; }

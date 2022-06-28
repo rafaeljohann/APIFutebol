@@ -17,17 +17,17 @@ namespace Futebol.Domain.Infra.Repositories
             _context = context;
         }
 
-        public IEnumerable<Time> GetAll()
+        public async Task<IEnumerable<Time>> GetAllAsync()
         {
-            return _context.Time
-                .AsNoTracking();
+            return await Task.FromResult(_context.Time
+                .AsNoTracking());
         }
 
-        public Time GetById(long id)
+        public async Task<Time> GetByIdAsync(long id)
         {
-            return _context.Time
+            return await Task.FromResult(_context.Time
                 .AsNoTracking()
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefault(x => x.Id == id));
         }
 
         public void Create(Time time)

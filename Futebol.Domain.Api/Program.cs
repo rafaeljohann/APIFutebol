@@ -1,22 +1,22 @@
 using Futebol.Domain.Handlers;
-using Futebol.Domain.Infra;
 using Futebol.Domain.Infra.Contexts;
 using Futebol.Domain.Infra.Repositories;
 using Futebol.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Futebol.Domain.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddMediator();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<ITimeRepository, TimeRepository>();
 builder.Services.AddTransient<TimeHandler, TimeHandler>();
-//string dbConnectionString = builder.Configuration;
-//builder.Services.AddTransient;
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<ConsultarTimeHandler, ConsultarTimeHandler>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
