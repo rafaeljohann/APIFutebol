@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futebol.Domain.Tests", "Fut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futebol.Domain.Infra", "Futebol.Domain.Infra\Futebol.Domain.Infra.csproj", "{259DEE96-D14A-4199-8D6A-A83407F7B001}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Futebol.Domain.CrossCutting", "Futebol.Domain.CrossCutting\Futebol.Domain.CrossCutting.csproj", "{7C7196BB-8B9F-43A0-9F2D-F73215030E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{259DEE96-D14A-4199-8D6A-A83407F7B001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{259DEE96-D14A-4199-8D6A-A83407F7B001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259DEE96-D14A-4199-8D6A-A83407F7B001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C7196BB-8B9F-43A0-9F2D-F73215030E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C7196BB-8B9F-43A0-9F2D-F73215030E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C7196BB-8B9F-43A0-9F2D-F73215030E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C7196BB-8B9F-43A0-9F2D-F73215030E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

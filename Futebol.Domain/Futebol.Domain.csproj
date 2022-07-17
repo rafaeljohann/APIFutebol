@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Futebol.Domain.CrossCutting\Futebol.Domain.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>

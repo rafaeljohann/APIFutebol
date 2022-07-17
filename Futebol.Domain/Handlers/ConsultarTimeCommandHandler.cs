@@ -1,34 +1,33 @@
-using FluentValidation.Results;
 using Futebol.Domain.Commands;
+using Futebol.Domain.CrossCutting.Notifications;
 using Futebol.Domain.Repositories;
 using MediatR;
 
 namespace Futebol.Domain.Handlers
 {
-    public class ConsultarTimeHandler : IRequestHandler<ConsultarTimeCommand, ConsultarTimeResponse>
+    public class ConsultarTimeCommandHandler 
+    : IRequestHandler<ConsultarTimeCommand, ConsultarTimeResponse>
     {
         private readonly ITimeRepository _repository;
+        private readonly NotificationContext _notificationContext;
 
-        public ConsultarTimeHandler(ITimeRepository repository)
+        public ConsultarTimeCommandHandler(
+            ITimeRepository repository,
+            NotificationContext notificationContext)
         {
             _repository = repository;
+            _notificationContext = notificationContext;
         }
 
         public async Task<ConsultarTimeResponse> Handle(
             ConsultarTimeCommand request, 
             CancellationToken cancellationToken)
         {
-            var validator = new ConsultarTimeCommandValidator();
-            var results = validator.Validate(request);
-
-            if (!results.IsValid)
-                return default(ConsultarTimeResponse);
-
             var time = await _repository.GetByIdAsync(request.Id);
 
             if (time is null)
             {
-                results.Errors.Add(new ValidationFailure("Time", "Time não encontrado."));
+                _notificationContext.AddNotification("Erro", "Time não encontrado.");
                 return default;
             }
 

@@ -44,7 +44,8 @@ namespace Futebol.Domain.Api.Controllers
         public async Task<IActionResult> GetById(
             long id)
         {
-            var result = await _mediator.Send(new ConsultarTimeCommand(id));
+            var command = new ConsultarTimeCommand(id);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 

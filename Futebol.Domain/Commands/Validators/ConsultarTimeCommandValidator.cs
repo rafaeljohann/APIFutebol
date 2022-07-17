@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Futebol.Domain.Commands
+namespace Futebol.Domain.Commands.Validators
 {
     public class ConsultarTimeCommandValidator : AbstractValidator<ConsultarTimeCommand>
     {
