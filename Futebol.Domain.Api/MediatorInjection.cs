@@ -1,6 +1,5 @@
-using System.Reflection;
 using FluentValidation;
-using Futebol.Domain.ValidationBehavior;
+using Futebol.Domain.CrossCutting.ValidationBehavior;
 using MediatR;
 
 namespace Futebol.Domain.Api

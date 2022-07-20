@@ -1,13 +1,8 @@
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
 namespace Futebol.Domain.Entities
 {
     public abstract class Entity : IEquatable<Entity>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long? Id { get; set; }
+        public int? Id { get; init; }
 
         public bool Equals(Entity other)
         {

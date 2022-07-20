@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Futebol.Domain.ValidationBehavior
+namespace Futebol.Domain.CrossCutting.ValidationBehavior
 {
     public class ValidationBehaviour<TRequest, TResponse> 
     : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>

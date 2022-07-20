@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Futebol.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,8 +14,6 @@ namespace Futebol.Domain.Infra.Contexts
         public DbSet<Time> Time { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Time>().HasKey(x => x.Id);
-        }
+        { }
     }
 }

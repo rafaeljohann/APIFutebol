@@ -23,11 +23,11 @@ namespace Futebol.Domain.Handlers
             ConsultarTimeCommand request, 
             CancellationToken cancellationToken)
         {
-            var time = await _repository.GetByIdAsync(request.Id);
+            var time = await _repository.ObterPorIdAsync(request.Id);
 
             if (time is null)
             {
-                _notificationContext.AddNotification("Erro", "Time não encontrado.");
+                _notificationContext.AddNotification("ConsultarTimeCommandHandler", "Time não encontrado.");
                 return default;
             }
 

@@ -14,14 +14,10 @@ builder.Services.AddControllers(options =>
 {   
     options.Filters.Add<NotificationFilter>();
 });
-builder.Services.AddMediator();
 
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddTransient<ITimeRepository, TimeRepository>();
-builder.Services.AddScoped<NotificationContext, NotificationContext>();
-builder.Services.AddScoped<ConsultarTimeCommandHandler, ConsultarTimeCommandHandler>();
-
+builder.Services.AddServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

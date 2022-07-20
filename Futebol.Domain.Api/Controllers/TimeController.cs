@@ -25,19 +25,22 @@ namespace Futebol.Domain.Api.Controllers
             return (GenericCommandResult)handler.Handle(command);
         }*/
 
-        IMediator _mediator;
+        private readonly IMediator _mediator;
+        private readonly ITimeRepository _timeRepository;
 
-        public TimeController(IMediator mediator)
+        public TimeController(IMediator mediator, ITimeRepository timeRepository)
         {
             _mediator = mediator;
+            _timeRepository = timeRepository;
         }
 
-        // [Route("")]
-        // [HttpGet]
-        // public IEnumerable<Time> GetAll([FromServices] ITimeRepository repository)
-        // {
-        //     return repository.GetAllAsync();
-        // }
+        [Route("")]
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromServices] ITimeRepository repository)
+        {
+            var result = await _timeRepository.ObterTodosAsync();
+            return Ok(result);
+        }
 
         [Route("{id:long}")]
         [HttpGet]
@@ -49,14 +52,14 @@ namespace Futebol.Domain.Api.Controllers
             return Ok(result);
         }
 
-        // [Route("")]
-        // [HttpPost]
-        // public GenericCommandResult Create(
-        //     [FromBody] CriarTimeCommand command, 
-        //     [FromServices] TimeHandler handler)
-        // {
-        //     return (GenericCommandResult)handler.Handle(command);
-        // }
+        [Route("")]
+        [HttpPost]
+        public async Task<IActionResult> Create(
+            [FromBody] CriarTimeCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok();
+        }
 
         // [Route("")]
         // [HttpPut]

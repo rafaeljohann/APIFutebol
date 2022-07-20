@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Futebol.Domain.Entities;
 using Futebol.Domain.Infra.Contexts;
 using Futebol.Domain.Repositories;
@@ -17,35 +13,42 @@ namespace Futebol.Domain.Infra.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Time>> GetAllAsync()
+        public async Task<IEnumerable<Time>> ObterTodosAsync()
         {
-            return await Task.FromResult(_context.Time
-                .AsNoTracking());
+            return await _context.Time
+                .AsNoTracking().ToListAsync();
         }
 
-        public async Task<Time> GetByIdAsync(long id)
+        public async Task<Time> ObterPorIdAsync(long id)
         {
-            return await Task.FromResult(_context.Time
+            return await _context.Time
                 .AsNoTracking()
-                .FirstOrDefault(x => x.Id == id));
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Create(Time time)
+        public async Task<Time> ObterPorNomeAsync(string nome)
         {
-            _context.Time.Add(time);
-            _context.SaveChanges();
+            return await _context.Time
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Nome == nome);
         }
 
-        public void Update(Time time)
+        public async Task CriarAsync(Time time)
+        {
+            await _context.Time.AddAsync(time);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AtualizarAsync(Time time)
         {
             _context.Entry(time).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Time time)
+        public async Task ExcluirAsync(Time time)
         {
             _context.Remove(time);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
