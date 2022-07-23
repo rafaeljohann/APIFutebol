@@ -1,21 +1,41 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Futebol.Domain.Commands.Contracts;
+using MediatR;
 
 namespace Futebol.Domain.Commands
 {
-    public class AtualizarTimeCommand : ICommand
+    public class AtualizarTimeCommand : IRequest
     {
-        public AtualizarTimeCommand() { }
-        public long Id { get; set; }
-        public string Nome { get; set; }
-        public DateTime DataFundacao { get; set; }
-        public string NomePresidente { get; set; }
-        public string NomeMascote { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Pais { get; set; }
+        public int Id { get; private set; }
+        public string Nome { get; init; }
+        public DateTime DataFundacao { get; init; }
+        public string NomePresidente { get; init; }
+        public string NomeMascote { get; init; }
+        public string Cidade { get; init; }
+        public string Estado { get; init; }
+        public string Pais { get; init; }
+
+        public AtualizarTimeCommand(
+            string nome, 
+            DateTime dataFundacao, 
+            string nomePresidente, 
+            string nomeMascote, 
+            string cidade, 
+            string estado, 
+            string pais)
+        {
+            Nome = nome;
+            DataFundacao = dataFundacao;
+            NomePresidente = nomePresidente;
+            NomeMascote = nomeMascote;
+            Cidade = cidade;
+            Estado = estado;
+            Pais = pais;
+        }
+
+        public AtualizarTimeCommand ComId(int id)
+        {
+            Id = id;
+
+            return this;
+        }
     }
 }

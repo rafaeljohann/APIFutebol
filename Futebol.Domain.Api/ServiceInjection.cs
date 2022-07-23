@@ -11,7 +11,7 @@ namespace Futebol.Domain.Api
         {
             // Custom Services
             services.AddMediator();
-            services.AddScoped<NotificationContext, NotificationContext>();
+            services.AddScoped<INotificationContext, NotificationContext>();
 
             // Repositories
             services.AddTransient<ITimeRepository, TimeRepository>();

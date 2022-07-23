@@ -1,9 +1,14 @@
+using MediatR;
+
 namespace Futebol.Domain.Commands
 {
-    public class DeletarTimeCommand
+    public class DeletarTimeCommand : IRequest
     {
-        public DeletarTimeCommand()  { }
+        public int Id { get; init; }
 
-        public long Id { get; set; }
+        public DeletarTimeCommand(int id)
+        {
+            Id = id;
+        }
     }
 }

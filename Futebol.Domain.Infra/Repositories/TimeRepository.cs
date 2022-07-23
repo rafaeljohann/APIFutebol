@@ -19,7 +19,7 @@ namespace Futebol.Domain.Infra.Repositories
                 .AsNoTracking().ToListAsync();
         }
 
-        public async Task<Time> ObterPorIdAsync(long id)
+        public async Task<Time> ObterPorIdAsync(int id)
         {
             return await _context.Time
                 .AsNoTracking()

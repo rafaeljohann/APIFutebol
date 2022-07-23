@@ -7,9 +7,9 @@ namespace Futebol.Domain.CrossCutting.Notifications
 {
     public class NotificationFilter : IAsyncResultFilter
     {
-        private readonly NotificationContext _notificationContext;
+        private readonly INotificationContext _notificationContext;
 
-        public NotificationFilter(NotificationContext notificationContext)
+        public NotificationFilter(INotificationContext notificationContext)
         {
             _notificationContext = notificationContext;
         }

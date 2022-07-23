@@ -6,13 +6,13 @@ using MediatR;
 
 namespace Futebol.Domain.Handlers
 {
-    public class CriarTimeCommandHandler 
-    : IRequestHandler<CriarTimeCommand>
+    public class AtualizarTimeCommandHandler 
+    : IRequestHandler<AtualizarTimeCommand>
     {
         private readonly ITimeRepository _repository;
         private readonly INotificationContext _notificationContext;
 
-        public CriarTimeCommandHandler(
+        public AtualizarTimeCommandHandler(
             ITimeRepository repository,
             INotificationContext notificationContext)
         {
@@ -20,36 +20,35 @@ namespace Futebol.Domain.Handlers
             _notificationContext = notificationContext;
         }
 
-        public async Task<Unit> Handle(CriarTimeCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AtualizarTimeCommand request, CancellationToken cancellationToken)
         {
-            var timeExistente = await _repository.ObterPorNomeAsync(request.Nome);
+            var timeExistente = await _repository.ObterPorIdAsync(request.Id);
 
-            if (timeExistente is not default(Time))
+            if (timeExistente is default(Time))
             {
                 _notificationContext.AddNotification(
-                    "Ocorreu um erro ao criar o time.", 
-                    "Time já existente na base de dados.");
+                    "Ocorreu um erro ao atualizar o time.", 
+                    "Time não encontrado na base de dados.");
 
                 return default;
             }
 
-            var time = new Time(
+            timeExistente.AtualizarInformacoesTime(
                 request.Nome,
                 request.DataFundacao,
                 request.NomePresidente,
                 request.NomeMascote,
                 request.Cidade,
                 request.Estado,
-                request.Pais
-            );
+                request.Pais);
 
-            await _repository.CriarAsync(time);
+            await _repository.AtualizarAsync(timeExistente);
 
             if (_notificationContext.HasNotifications)
             {
                 _notificationContext.AddNotification(
-                    "Ocorreu um erro ao criar o time.", 
-                    "Erro ao salvar o time no banco de dados.");
+                    "Ocorreu um erro ao atualizar o time.", 
+                    "Erro ao atualizar o time no banco de dados.");
 
                 return default;
             }

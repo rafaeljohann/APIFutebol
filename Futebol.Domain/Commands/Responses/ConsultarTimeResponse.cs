@@ -1,6 +1,6 @@
 using Futebol.Domain.Entities;
 
-namespace Futebol.Domain.Commands
+namespace Futebol.Domain.Commands.Responses
 {
     public class ConsultarTimeResponse
     {

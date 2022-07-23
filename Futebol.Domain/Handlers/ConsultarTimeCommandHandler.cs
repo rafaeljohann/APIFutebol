@@ -1,4 +1,5 @@
 using Futebol.Domain.Commands;
+using Futebol.Domain.Commands.Responses;
 using Futebol.Domain.CrossCutting.Notifications;
 using Futebol.Domain.Repositories;
 using MediatR;
@@ -9,11 +10,11 @@ namespace Futebol.Domain.Handlers
     : IRequestHandler<ConsultarTimeCommand, ConsultarTimeResponse>
     {
         private readonly ITimeRepository _repository;
-        private readonly NotificationContext _notificationContext;
+        private readonly INotificationContext _notificationContext;
 
         public ConsultarTimeCommandHandler(
             ITimeRepository repository,
-            NotificationContext notificationContext)
+            INotificationContext notificationContext)
         {
             _repository = repository;
             _notificationContext = notificationContext;

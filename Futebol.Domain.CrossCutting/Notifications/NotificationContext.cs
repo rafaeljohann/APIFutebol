@@ -1,6 +1,6 @@
 namespace Futebol.Domain.CrossCutting.Notifications
 {
-    public class NotificationContext
+    public class NotificationContext : INotificationContext
     {
         private readonly List<Notification> _notifications;
         public IReadOnlyCollection<Notification> Notifications => _notifications;
